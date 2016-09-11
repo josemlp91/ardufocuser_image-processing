@@ -14,3 +14,9 @@
 
 # Ardufocuser Image Processing
 Repositorio destinado a los módulos de procesamiento y tratamiento de imágenes para el proyecto Ardufocuser-INDI 
+
+## Para ejecutar
+
+```
+java -jar "./StarProcessor/dist/StarProcessor.jar
+```
