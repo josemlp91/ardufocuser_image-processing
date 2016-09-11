@@ -21,3 +21,6 @@ Repositorio destinado a los módulos de procesamiento y tratamiento de imágenes
 ```
 java -jar "./StarProcessor/dist/StarProcessor.jar
 ```
+## Web del proyecto:
+
+[http://ardufocuser.info/](http://ardufocuser.info/)
