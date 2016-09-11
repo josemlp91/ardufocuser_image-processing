@@ -147,7 +147,7 @@ public class StarFieldFrame extends javax.swing.JInternalFrame {
         //frame=fits.getSubMatrixCenter(x, y, 100);
        
         fwhm=Utils.computeFWHM(fits.getImageMatrix(), x, y, 10);
-        System.out.println(fwhm);
+        //System.out.println(fwhm);
         
         DecimalFormat decimales = new DecimalFormat("0.0000");          
         fwhmInfo.setText("[FWHM] -> " + decimales.format(fwhm) + "");

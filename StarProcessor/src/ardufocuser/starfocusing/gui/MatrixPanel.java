@@ -62,7 +62,7 @@ public class MatrixPanel extends javax.swing.JPanel {
                 for (int y = 0; y < pixels[0].length; y++) {
                     double val = (double) (pixels[x][y] - min) / (double) (max - min);  // Valor entre 0 y 1
                     
-                    System.out.print(val + "  ");
+                    //System.out.print(val + "  ");
 
                     if (val < 0.0) {
                         val = 0.0;
@@ -81,7 +81,7 @@ public class MatrixPanel extends javax.swing.JPanel {
                     g2.drawRect((int) (x * pixelWidth), (int) (y * pixelHeight), (int) pixelWidth, (int) pixelHeight);
                     g2.fillRect((int) (x * pixelWidth), (int) (y * pixelHeight), (int) pixelWidth, (int) pixelHeight);
                 }
-                System.out.println("");
+                //System.out.println("");
             }
         }
     }

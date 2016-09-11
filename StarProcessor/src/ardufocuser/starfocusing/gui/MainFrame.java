@@ -57,7 +57,7 @@ public class MainFrame extends javax.swing.JFrame {
 
 
         // Imagen por defecto. Solo para debug.
-        addStarFieldFrame(new File("/home/josemlp/workspace/pruebasEnfoque/nucleo24880_042.fit"));
+        //addStarFieldFrame(new File("/home/josemlp/workspace/pruebasEnfoque/nucleo24880_042.fit"));
 
         setBounds(50, 50, 1024, 700);
 

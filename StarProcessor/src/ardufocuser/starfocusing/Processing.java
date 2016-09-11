@@ -201,7 +201,7 @@ public class Processing {
             if (s.getFilterStatus() == StarFilterStatus.OK) {
 
                 parameters = Utils.computeGaussianParams(image.getImageMatrix(), s.getxPos(), s.getyPos(), radius);
-                System.out.println(parameters[0] + "--" + parameters[1] + "---" + parameters[2]);
+                //System.out.println(parameters[0] + "--" + parameters[1] + "---" + parameters[2]);
                 if (parameters[2] > sigma) {
                     s.setFilterStatus(StarFilterStatus.FILTERED_BY_GAUSS);
                 }
