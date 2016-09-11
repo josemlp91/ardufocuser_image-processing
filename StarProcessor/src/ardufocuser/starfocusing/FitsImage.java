@@ -15,6 +15,7 @@
  */
 package ardufocuser.starfocusing;
 
+
 import java.io.*;
 import org.eso.fits.*;
 import java.awt.image.BufferedImage;
