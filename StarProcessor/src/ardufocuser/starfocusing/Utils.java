@@ -1,8 +1,20 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+
 package ardufocuser.starfocusing;
 
 import static java.lang.Math.pow;
@@ -17,7 +29,7 @@ import org.apache.commons.math3.fitting.WeightedObservedPoints;
 public class Utils {
 
     /**
-     * Calcula maximos y minimos de la matrix de pixles.
+     * Calcula valores de luz maximos y minimos de la matriz imagen.
      */
     public static int[] computeMinMax(int[][] pixels) {
         int min = Integer.MAX_VALUE;
@@ -36,6 +48,10 @@ public class Utils {
 
         return new int[]{min, max};
     }
+    
+    /**
+     * Calcula valores de luz maximos y minimos de la región de la matriz imagen  delimitada por startX - endX  y startY- endY ..
+     */
 
     public static int[] computeMinMax(int[][] pixels, int startX, int startY, int endX, int endY) {
         int min = Integer.MIN_VALUE;
@@ -56,7 +72,7 @@ public class Utils {
     }
 
     /**
-     *
+     * Calcula media de luminocidad de la matriz imagen.
      */
     public static double computeMean(int[][] pixels) {
         double means;
@@ -88,10 +104,11 @@ public class Utils {
 
     
     /*
+       Dada una imagen realiza un ajuste a la ecuación gaussiana, indicando los paŕametros de tal ecuación.
        Return:
-        private final double norm;
-        private final double mean;
-        private final double sigma;
+        private final double norm; Parametros normal de la ecuación gaussiana.
+        private final double mean; Parametro media de la ecuación gaussiana.
+        private final double sigma; Parametro sigma de la ecuación gaussiana.
     */
     public static double[] computeGaussianParams(int[][] image, int starCenterX, int starCenterY, int radius) {
 
@@ -109,7 +126,7 @@ public class Utils {
         return parameters;
     }
     
-    
+    // Primera versión del cálculo del parámetro FWHM. (Sin utilizar ajuste gausiano)
     public static double computeFWHM_v1(int[][] image) {
 
         int npix = image.length * image[0].length;
@@ -133,7 +150,8 @@ public class Utils {
         return fwhm_value;
     }
     
-    
+     // Segunda versión del cálculo del parámetro FWHM. (Sin utilizar ajuste gausiano)
+     // Siguiendo la ecuación::  https://es.wikipedia.org/wiki/Anchura_a_media_altura
     public static double computeFWHM(int[][] image, int starCenterX, int starCenterY, int radius ) {
 
         double[] gaussparam;
@@ -149,8 +167,4 @@ public class Utils {
         return fwhm;
     }
     
-    
-    
-    
-
 }

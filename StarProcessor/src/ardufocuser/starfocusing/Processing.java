@@ -1,8 +1,19 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package ardufocuser.starfocusing;
 
 import java.util.ArrayList;
@@ -14,10 +25,8 @@ import java.util.ArrayList;
 public class Processing {
 
     /**
-     * Gets a list of candidate stars (where there is a maximum over all pixels
-     * around).
-     *
-     * @param image
+     *  Calcula  conjunto de estrellas candidatas aplicando búsqueda de picos locales.
+     * @param image Imagen.
      * @return
      */
     public static ArrayList<Star> detectStars(FitsImage image, int radius) {
@@ -35,12 +44,12 @@ public class Processing {
     }
 
     /**
-     * Returns true if the (x,y) pixel is greater than all surrounding pixels.
+     * Copmprueba que un pixel sobresale en luminocidad de su entorno.
      *
-     * @param img
-     * @param x
-     * @param y
-     * @param radius
+     * @param img Imagen.
+     * @param x Coordenada x
+     * @param y Coordenada y
+     * @param radius Radio del entorno
      * @return
      */
     public static Boolean isBrightnessPeak(FitsImage img, int x, int y, int radius) {
@@ -61,6 +70,7 @@ public class Processing {
         return true;
     }
 
+    //  Elimina estrellas proximas al límite de la imagen.
     public static void filterStarByMargin(ArrayList<Star> stars, int margin, int width, int height) {
         for (Star star : stars) {
             if ((star.getxPos() < margin) || (star.getyPos() < margin)) {
@@ -73,6 +83,7 @@ public class Processing {
         }
     }
 
+    // Filtrado por contraste, comprueba que la zona de la estrella tiene un valor de contraste por encima de un umbral.
     public static void filterByContrast(FitsImage image, ArrayList<Star> stars, int radius, double minQuotient) {
         double quotient;
 
@@ -100,7 +111,8 @@ public class Processing {
             }
         }
     }
-
+    
+    // Busca estrella más luminosa dentro de un conjunto conjunto.
     public static int getStarWithMaxBrighness(FitsImage image, ArrayList<Star> stars, int maxival) {
 
         int max = Integer.MIN_VALUE;
@@ -118,6 +130,7 @@ public class Processing {
 
     }
 
+    // Reduce conjunto de estrellas a la ns estrellas más luminosas.
     public static void filterByMaximunBrighness(FitsImage image, ArrayList<Star> stars, int ns) {
 
         ArrayList<Integer> max_star_id = new ArrayList<>();
@@ -176,7 +189,7 @@ public class Processing {
 
     }
 
-    /*
+    /* Reduce conjunto de entrellas a aquellas cuyo ecuación gaussiana se ajuste a los párametros dados.
      Ojo, metodo pesado, aplicar a un conjunto muy reducido. 
      */
     public static void filterByGaussianParam(FitsImage image, ArrayList<Star> stars, int radius, double sigma, double normal, double mean) {
@@ -197,7 +210,8 @@ public class Processing {
         }
 
     }
-
+    
+    // Filtra estrellas cuyos FWHM se encuentre en el umbral dado.
     public static void filterByFWHM(FitsImage image, ArrayList<Star> stars, int radius, double minfwhm) {
 
         Star s;
@@ -221,6 +235,7 @@ public class Processing {
 
     }
 
+     // Main para pruebas.
     public static void main(String[] args) {
 
         FitsImage fimg;
